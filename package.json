@@ -1,7 +1,7 @@
 {
-  "name": "bookmarklet-convert-chatgpt-to-scrapbox",
+  "name": "bookmarklet-takeout-chatgpt-conversations",
   "version": "1.0.0",
-  "description": "Bookmarklet: Convert ChatGPT to Scrapbox",
+  "description": "Bookmarklet: Takeout ChatGPT conversations (Scrapbox format)",
   "main": "src/index.js",
   "scripts": {
     "build": "sh build.sh"

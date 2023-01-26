@@ -1,4 +1,4 @@
-# Bookmarklet: Convert ChatGPT conversations to Scrapbox
+# Bookmarklet: Takeout ChatGPT conversations (Scrapbox format)
 
 ## Build bookmarklet
 
