@@ -1,4 +1,4 @@
-const yourName = "daiiz"; // Please change to your name
+const yourName = ""; // Please change to your name
 const chatgptName = "chatgpt";
 const hashtagLine = "#ChatGPTとの会話"; // Please change to your favaorite hashtags
 
@@ -21,7 +21,7 @@ const getChatContents = () => {
     let speaker = yourName;
     if (imgElem) {
       if (!yourName) {
-        speaker = imgElem.getAttribute("alt") || "unknown";
+        speaker = imgElem.getAttribute("alt") || "me";
       }
     } else if (svgElem) {
       speaker = chatgptName;
