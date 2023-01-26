@@ -9,6 +9,8 @@ $ brew install closure-compiler
 $ npm run build
 ```
 
+Use `out/bookmarklet.js` as a bookmarklet.
+
 ## Examples
 
 - https://scrapbox.io/daiiz/Evening_schedule_planning
