@@ -1,6 +1,6 @@
 const yourName = ""; // Please change to your name
 const chatgptName = "chatgpt";
-const hashtagLine = "#ChatGPTとの会話"; // Please change to your favaorite hashtags
+const hashtagLine = "#ChatGPT日記"; // Please change to your favaorite hashtags
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
@@ -15,16 +15,15 @@ const getChatContents = () => {
   for (let i = 0; i < textElems.length; i++) {
     const textElem = textElems[i];
     const text = textElem.textContent;
-    const imgElem = textElem.querySelector("img");
     const svgElem = textElem.querySelector("svg");
+    const imgElem = textElem.querySelector("img[alt]:not([alt=''])");
 
     let speaker = yourName;
-    if (imgElem) {
-      if (!yourName) {
-        speaker = imgElem.getAttribute("alt") || "me";
-      }
-    } else if (svgElem) {
+    if (svgElem) {
       speaker = chatgptName;
+    }
+    if (imgElem && !yourName) {
+      speaker = imgElem.alt || "me";
     }
     const icon = `[${speaker.replace(/\s/g, "_")}.icon]`;
 
@@ -43,6 +42,7 @@ const createScrapboxLines = () => {
   const title = getChatTitle();
   const contents = getChatContents();
   res.push(title);
+  res.push(new Date().toLocaleDateString(), "");
   res.push(...contents);
   res.push("", hashtagLine);
   return res;
