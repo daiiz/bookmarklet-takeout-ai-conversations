@@ -11,5 +11,5 @@ $ npm run build
 
 ## Examples
 
-- https://scrapbox.io/daiiz/Evening_schedule_planning.
+- https://scrapbox.io/daiiz/Evening_schedule_planning
 - https://scrapbox.io/daiiz/Takoyaki_Recipe
