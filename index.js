@@ -48,4 +48,9 @@ const createScrapboxLines = () => {
   return res;
 };
 
-window.prompt("Result", createScrapboxLines().join("\n"));
+const copyToClipboard = async (text) => {
+  await navigator.clipboard.writeText(text);
+  alert("Copied to clipboard!");
+};
+
+copyToClipboard(createScrapboxLines().join("\n"));
