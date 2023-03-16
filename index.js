@@ -15,7 +15,7 @@ const getChatContents = () => {
   for (let i = 0; i < textElems.length; i++) {
     const textElem = textElems[i];
     const text = textElem.textContent;
-    const svgElem = textElem.querySelector("svg");
+    const svgElem = textElem.querySelector(".rounded-sm svg");
     const imgElem = textElem.querySelector("img[alt]:not([alt=''])");
 
     let speaker = yourName;
