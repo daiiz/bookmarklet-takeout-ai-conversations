@@ -18,12 +18,16 @@ const getChatContents = () => {
     const svgElem = textElem.querySelector("svg");
     const imgElem = textElem.querySelector("img[alt]:not([alt=''])");
 
-    let speaker = yourName;
+    let speaker = '';
     if (svgElem) {
       speaker = chatgptName;
     }
-    if (imgElem && !yourName) {
-      speaker = imgElem.alt || "me";
+    if (imgElem) {
+      if(!yourName){
+        speaker = imgElem.alt || "me";
+      } else {
+        speaker = yourName;
+      }
     }
     const icon = `[${speaker.replace(/\s/g, "_")}.icon]`;
 
