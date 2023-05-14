@@ -1,4 +1,5 @@
 import { extractChatGPTTexts } from "./src/chatgpt.js";
+import { extractBardTexts } from "./src/bard.js";
 
 // *: Change this line if needed
 const config = Object.freeze({
@@ -7,6 +8,10 @@ const config = Object.freeze({
     aiName: "chatgpt",
     hashtagLine: "#ChatGPT日記", // *
   },
+  bard: {
+    aiName: "bard",
+    hashtagLine: "#Bard日記", // *
+  },
 });
 
 const createScrapboxLines = (origin) => {
@@ -14,8 +19,8 @@ const createScrapboxLines = (origin) => {
   let data;
   if (origin === "https://chat.openai.com") {
     data = extractChatGPTTexts(config);
-  } else if (origin === "https://bard.google.com/") {
-    // TODO: Implement
+  } else if (origin === "https://bard.google.com") {
+    data = extractBardTexts(config);
   }
   if (!data) {
     return res;
