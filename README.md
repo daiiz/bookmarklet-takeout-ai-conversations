@@ -7,11 +7,11 @@ https://scrapbox.io/daiiz/Bookmarklet:_Takeout_ChatGPT_conversations
 ## Build bookmarklet
 
 ```
-$ brew install closure-compiler
+$ npm install
 $ npm run build
 ```
 
-Use `out/bookmarklet.js` as a bookmarklet.
+The file `out/bookmarklet.js` will be generated as a bookmarklet.
 
 ## Examples
 
