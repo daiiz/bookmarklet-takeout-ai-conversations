@@ -16,5 +16,8 @@
     "url": "https://github.com/daiiz/svg-screenshot-3g/issues"
   },
   "homepage": "https://github.com/daiiz/svg-screenshot-3g#readme",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "google-closure-compiler": "^20230502.0.0"
+  }
 }
