@@ -2,16 +2,13 @@ const yourName = ""; // Please change to your name
 const chatgptName = "chatgpt";
 const hashtagLine = "#ChatGPT日記"; // Please change to your favaorite hashtags
 
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
-
 const getChatTitle = () => {
-  return $("title").textContent;
+  return document.querySelector("title").textContent;
 };
 
 const getChatContents = () => {
   const res = [];
-  const textElems = $$("div.text-base");
+  const textElems = document.querySelectorAll("div.text-base");
   for (let i = 0; i < textElems.length; i++) {
     const textElem = textElems[i];
     // div.text-base要素内の2番目のdiv要素が本文
