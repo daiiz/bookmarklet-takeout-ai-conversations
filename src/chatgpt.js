@@ -1,6 +1,3 @@
-const chatgptName = "chatgpt";
-const hashtagLine = "#ChatGPT日記"; // Please change to your favaorite hashtags
-
 const getNextjsPageProps = () => {
   const nextJsScript = document.querySelector("script#__NEXT_DATA__");
   const data = JSON.parse(nextJsScript?.textContent || "{}");

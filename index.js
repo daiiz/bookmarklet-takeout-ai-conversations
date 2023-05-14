@@ -1,17 +1,31 @@
 import { extractChatGPTTexts } from "./src/chatgpt.js";
+import { extractBardTexts } from "./src/bard.js";
 
-// *: Change this config if needed
+// *: Change this line if needed
 const config = Object.freeze({
   userName: "", // *
   chatgpt: {
     aiName: "chatgpt",
     hashtagLine: "#ChatGPT日記", // *
   },
+  bard: {
+    aiName: "bard",
+    hashtagLine: "#Bard日記", // *
+  },
 });
 
-const createScrapboxLines = () => {
+const createScrapboxLines = (origin) => {
   const res = [];
-  const { title, contents, hashtagLine } = extractChatGPTTexts(config);
+  let data;
+  if (origin === "https://chat.openai.com") {
+    data = extractChatGPTTexts(config);
+  } else if (origin === "https://bard.google.com") {
+    data = extractBardTexts(config);
+  }
+  if (!data) {
+    return res;
+  }
+  const { title, contents, hashtagLine } = data;
   res.push(title);
   res.push(new Date().toLocaleDateString(), "");
   res.push(...contents);
@@ -25,7 +39,8 @@ const copyToClipboard = async (text) => {
 };
 
 const main = () => {
-  copyToClipboard(createScrapboxLines().join("\n"));
+  const origin = window.location.origin;
+  copyToClipboard(createScrapboxLines(origin).join("\n"));
 };
 
 main();
