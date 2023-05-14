@@ -11,7 +11,7 @@ $ npm install
 $ npm run build
 ```
 
-The file `out/bookmarklet.js` will be generated as a bookmarklet.
+The file [`out/bookmarklet.js`](https://github.com/daiiz/bookmarklet-takeout-chatgpt-conversations/blob/main/out/bookmarklet.js) will be generated as a bookmarklet.
 
 ## Examples
 
