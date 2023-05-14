@@ -1,6 +1,6 @@
 # Bookmarklet: Takeout AI conversations (Scrapbox format)
 
-Copy to clipboard the conversations in [ChatGPT](https://chat.openai.com/chat) in the format of [Scrapbox](https://scrapbox.io/).
+Copy to clipboard the conversations in [ChatGPT](https://chat.openai.com/chat) and [Bard](https://bard.google.com/) in the format of [Scrapbox](https://scrapbox.io/).
 
 https://scrapbox.io/daiiz/Bookmarklet:_Takeout_ChatGPT_conversations
 
