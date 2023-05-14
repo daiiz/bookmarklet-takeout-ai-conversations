@@ -59,7 +59,6 @@ const getChatContents = ({ userName, aiName }) => {
         resTexts.push(resText);
       }
     }
-    // const resTexts = (resTextElem?.textContent || "").split("\n");
     const resIcon = `[${fmtSpaces(aiName)}.icon]`;
     res.push(resIcon, ...resTexts.map((text) => ` ${text}`), "");
   }
