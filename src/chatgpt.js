@@ -11,7 +11,7 @@ const getChatTitle = () => {
   return document.querySelector("title").textContent;
 };
 
-const getChatContents = (yourName, { user }) => {
+const getChatContents = ({ userName, aiName }, { user }) => {
   const res = [];
   const textElems = document.querySelectorAll("div.text-base");
   for (let i = 0; i < textElems.length; i++) {
@@ -23,16 +23,16 @@ const getChatContents = (yourName, { user }) => {
     const svgElem = textElem.querySelector(".rounded-sm svg");
     const imgElem = textElem.querySelector("img[alt]:not([alt=''])");
 
-    let speaker = yourName;
+    let speaker = userName;
     if (svgElem) {
-      speaker = chatgptName;
+      speaker = aiName;
     }
-    if (imgElem && !yourName) {
+    if (imgElem && !userName) {
       speaker = user?.name || "me";
     }
     const icon = `[${speaker.replace(/\s/g, "_")}.icon]`;
 
-    if (speaker === chatgptName) {
+    if (speaker === aiName) {
       const sents = text.split("\n");
       res.push(icon, ...sents.flatMap((sent) => ` ${sent}`), "");
     } else {
@@ -42,12 +42,12 @@ const getChatContents = (yourName, { user }) => {
   return res;
 };
 
-function extractChatGPTTexts(defaultUserName) {
+export function extractChatGPTTexts({ userName, chatgpt }) {
+  const consts = {
+    userName,
+    aiName: chatgpt.aiName,
+  };
   const title = getChatTitle();
-  const contents = getChatContents(defaultUserName, getNextjsPageProps());
+  const contents = getChatContents(consts, getNextjsPageProps());
   return { title, contents, hashtagLine };
 }
-
-module.exports = {
-  extractChatGPTTexts,
-};
