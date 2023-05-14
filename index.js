@@ -14,6 +14,8 @@ const createScrapboxLines = (origin) => {
   let data;
   if (origin === "https://chat.openai.com") {
     data = extractChatGPTTexts(config);
+  } else if (origin === "https://bard.google.com/") {
+    // TODO: Implement
   }
   if (!data) {
     return res;
