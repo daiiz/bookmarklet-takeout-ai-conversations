@@ -1,6 +1,6 @@
 import { extractChatGPTTexts } from "./src/chatgpt.js";
 
-// *: Change this config if needed
+// *: Change this line if needed
 const config = Object.freeze({
   userName: "", // *
   chatgpt: {
@@ -9,10 +9,10 @@ const config = Object.freeze({
   },
 });
 
-const createScrapboxLines = () => {
+const createScrapboxLines = (origin) => {
   const res = [];
   let data;
-  if (window.location.origin === "https://chat.openai.com") {
+  if (origin === "https://chat.openai.com") {
     data = extractChatGPTTexts(config);
   }
   if (!data) {
@@ -32,7 +32,8 @@ const copyToClipboard = async (text) => {
 };
 
 const main = () => {
-  copyToClipboard(createScrapboxLines().join("\n"));
+  const origin = window.location.origin;
+  copyToClipboard(createScrapboxLines(origin).join("\n"));
 };
 
 main();
