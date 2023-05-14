@@ -36,8 +36,28 @@ const getChatContents = ({ userName, aiName }) => {
     const resTexts = [];
     for (let j = 0; j < modelTextParagraphs.length; j++) {
       const p = modelTextParagraphs[j];
-      const resText = p?.textContent || "";
-      resTexts.push(resText);
+      if (p.tagName === "UL" || p.tagName === "OL") {
+        const liElems = p.querySelectorAll("li");
+        for (let k = 0; k < liElems.length; k++) {
+          const liText = liElems[k]?.textContent || "";
+          resTexts.push(` ${liText}`);
+        }
+      } else if (p.tagName === "CODE-BLOCK") {
+        const block = p.querySelector("div.code-block");
+        // ファイル形式を示しているヘッダー部
+        const header = block.querySelector("div.header");
+        const headerText = header?.textContent || "";
+        resTexts.push(`code:${headerText.toLowerCase()}`);
+        // コード部
+        const code = block.querySelector("pre");
+        const codeTexts = (code?.textContent || "")
+          .split("\n")
+          .filter((text) => !!text);
+        resTexts.push(...codeTexts.map((text) => ` ${text}`));
+      } else {
+        const resText = p?.textContent || "";
+        resTexts.push(resText);
+      }
     }
     // const resTexts = (resTextElem?.textContent || "").split("\n");
     const resIcon = `[${fmtSpaces(aiName)}.icon]`;
