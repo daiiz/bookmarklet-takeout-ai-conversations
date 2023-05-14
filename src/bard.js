@@ -68,7 +68,6 @@ const getChatContents = ({ userName, aiName }) => {
             const cellText = cells[l]?.textContent || "";
             rowTexts.push(cellText);
           }
-          // const rowText = (k === 0 ? "" : " ") + rowTexts.join("\t");
           if (k === 0) {
             resTable.push("table:table");
           }
