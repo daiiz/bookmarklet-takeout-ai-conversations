@@ -10,8 +10,12 @@ const config = Object.freeze({
 });
 
 const createScrapboxLines = () => {
+  let data;
+  if (window.location.origin === "https://chat.openai.com") {
+    data = extractChatGPTTexts(config);
+  }
+  const { title, contents, hashtagLine } = data;
   const res = [];
-  const { title, contents, hashtagLine } = extractChatGPTTexts(config);
   res.push(title);
   res.push(new Date().toLocaleDateString(), "");
   res.push(...contents);
