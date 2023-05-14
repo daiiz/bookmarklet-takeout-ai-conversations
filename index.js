@@ -11,11 +11,11 @@ const config = Object.freeze({
 
 const createScrapboxLines = () => {
   const res = [];
-  const { title, contents } = extractChatGPTTexts(config);
+  const { title, contents, hashtagLine } = extractChatGPTTexts(config);
   res.push(title);
   res.push(new Date().toLocaleDateString(), "");
   res.push(...contents);
-  res.push("", config.chatgpt.hashtagLine);
+  res.push("", hashtagLine);
   return res;
 };
 

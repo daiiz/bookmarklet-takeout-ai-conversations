@@ -50,5 +50,9 @@ export function extractChatGPTTexts({ userName, chatgpt }) {
   };
   const title = getChatTitle();
   const contents = getChatContents(consts, props);
-  return { title, contents, hashtagLine };
+  return {
+    title,
+    contents,
+    hashtagLine: chatgpt.hashtagLine,
+  };
 }
