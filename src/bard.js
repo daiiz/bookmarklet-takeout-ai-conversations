@@ -49,8 +49,8 @@ const getChatContents = ({ userName, aiName }) => {
 
 export function extractBardTexts({ userName, bard }) {
   const consts = {
-    userName: getUserName() || userName,
-    aiName: bard.aiName,
+    userName: getUserName() || userName || "me",
+    aiName: bard.aiName || "ai",
   };
   const title = getChatTitle();
   const contents = getChatContents(consts);
