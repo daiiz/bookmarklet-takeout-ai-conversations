@@ -29,8 +29,10 @@ const getChatContents = ({ userName, aiName }) => {
     res.push(`${uIcon} ${uText}`);
 
     // AIの回答
-    const modelTextElem = resElem.querySelector(".model-response-text");
-    const modelTextParagraphs = modelTextElem.querySelectorAll("p");
+    const modelTextElem = resElem.querySelector(
+      ".model-response-text .markdown"
+    );
+    const modelTextParagraphs = modelTextElem.children;
     const resTexts = [];
     for (let j = 0; j < modelTextParagraphs.length; j++) {
       const p = modelTextParagraphs[j];
