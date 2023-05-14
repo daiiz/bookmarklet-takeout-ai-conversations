@@ -4,9 +4,9 @@ const getUserName = () => {
 };
 
 const getChatTitle = () => {
-  // Bardには会話のタイトルがないので、最初の発言の冒頭30文字を採用する
+  // Bardには会話のタイトルがないので、最初の発言を採用する
   const uTextElem = document.querySelector(".user-query-container .query-text");
-  return (uTextElem?.textContent || "No title").substring(0, 30);
+  return (uTextElem?.textContent || "No title").substring(0, 50);
 };
 
 const getChatContents = ({ userName, aiName }) => {
