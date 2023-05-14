@@ -34,7 +34,7 @@ const getChatContents = ({ userName, aiName }, { user }) => {
 
     if (speaker === aiName) {
       const sents = text.split("\n");
-      res.push(icon, ...sents.flatMap((sent) => ` ${sent}`), "");
+      res.push(icon, ...sents.map((sent) => ` ${sent}`), "");
     } else {
       res.push(`${icon} ${text}`);
     }
@@ -43,11 +43,12 @@ const getChatContents = ({ userName, aiName }, { user }) => {
 };
 
 export function extractChatGPTTexts({ userName, chatgpt }) {
+  const props = getNextjsPageProps();
   const consts = {
     userName,
     aiName: chatgpt.aiName,
   };
   const title = getChatTitle();
-  const contents = getChatContents(consts, getNextjsPageProps());
+  const contents = getChatContents(consts, props);
   return { title, contents, hashtagLine };
 }
