@@ -54,6 +54,26 @@ const getChatContents = ({ userName, aiName }) => {
           .split("\n")
           .filter((text) => !!text);
         resTexts.push(...codeTexts.map((text) => ` ${text}`));
+      } else if (
+        p.classList.contains("horizontal-scroll-wrapper") &&
+        p.querySelector("table")
+      ) {
+        const tBody = p.querySelector("table tbody");
+        const rows = tBody.querySelectorAll("tr");
+        const resTable = [];
+        for (let k = 0; k < rows.length; k++) {
+          const cells = rows[k].querySelectorAll("td,th");
+          const rowTexts = [];
+          for (let l = 0; l < cells.length; l++) {
+            const cellText = cells[l]?.textContent || "";
+            rowTexts.push(cellText);
+          }
+          if (k === 0) {
+            resTable.push("table:table");
+          }
+          resTable.push(` ${rowTexts.join("\t")}`);
+        }
+        resTexts.push(...resTable);
       } else {
         const resText = p?.textContent || "";
         resTexts.push(resText);
