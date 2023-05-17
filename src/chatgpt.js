@@ -14,9 +14,11 @@ const getChatContents = ({ userName, aiName }, { user }) => {
   for (let i = 0; i < textElems.length; i++) {
     const textElem = textElems[i];
     // div.text-base要素内の2番目のdiv要素が本文
-    const text = textElem.parentElement.querySelector(
-      "div.text-base > div:nth-child(2)"
-    ).textContent;
+    const textContentElem =
+      textElem.parentElement.querySelector("div.text-base div.markdown") ||
+      textElem.parentElement.querySelector("div.text-base > div:nth-child(2)");
+
+    const text = textContentElem.textContent;
     const svgElem = textElem.querySelector(".rounded-sm svg");
     const imgElem = textElem.querySelector("img[alt]:not([alt=''])");
 
