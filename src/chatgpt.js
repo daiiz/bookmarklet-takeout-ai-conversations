@@ -8,7 +8,18 @@ const getChatTitle = () => {
   return document.querySelector("title").textContent;
 };
 
+const isUsedPluginsModel = () => {
+  const mainHeader = document.querySelector("main div.w-full");
+  if (!mainHeader) {
+    return false;
+  }
+  const textLc = mainHeader.textContent.replace(/\s/gi, "").toLowerCase();
+  return textLc.includes("model:plugins");
+};
+
 const getChatContents = ({ userName, aiName }, { user }) => {
+  const isPluginsMode = isUsedPluginsModel();
+  console.log("...", isPluginsMode);
   const res = [];
   const textElems = document.querySelectorAll("div.text-base");
   for (let i = 0; i < textElems.length; i++) {
