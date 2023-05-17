@@ -17,17 +17,36 @@ const isUsedPluginsModel = () => {
   return textLc.includes("model:plugins");
 };
 
+// BETA
+const getPluginNames = (textElem, rootClassName) => {
+  const textContentElem = textElem.parentElement.querySelector(rootClassName);
+  const target = textContentElem.querySelector("div.flex-col.items-start");
+  if (!target || target.classList.contains("whitespace-pre-wrap")) {
+    return [];
+  }
+  const textContent = target.textContent;
+  // TDOO: 複数のプラグインが一度に利用された場合の対応
+  const names = textContent
+    .replace(/^used\s+/gi, "")
+    .split(/[,\s]/)
+    .map((x) => x.trim())
+    .filter((x) => !!x);
+  return names;
+};
+
 const getChatContents = ({ userName, aiName }, { user }) => {
   const isPluginsMode = isUsedPluginsModel();
-  console.log("...", isPluginsMode);
   const res = [];
   const textElems = document.querySelectorAll("div.text-base");
   for (let i = 0; i < textElems.length; i++) {
     const textElem = textElems[i];
     // div.text-base要素内の2番目のdiv要素が本文
+    const rootClassName = "div.text-base > div:nth-child(2)";
     const textContentElem =
       textElem.parentElement.querySelector("div.text-base div.markdown") ||
-      textElem.parentElement.querySelector("div.text-base > div:nth-child(2)");
+      textElem.parentElement
+        .querySelector(rootClassName)
+        .querySelector("div.whitespace-pre-wrap");
 
     const text = textContentElem.textContent;
     const svgElem = textElem.querySelector(".rounded-sm svg");
@@ -40,7 +59,16 @@ const getChatContents = ({ userName, aiName }, { user }) => {
     if (imgElem && !userName) {
       speaker = user?.name || "me";
     }
-    const icon = `[${speaker.replace(/\s/g, "_")}.icon]`;
+
+    const plugins = [];
+    if (isPluginsMode) {
+      plugins.push(...getPluginNames(textElem, rootClassName));
+    }
+
+    let icon = `[${speaker.replace(/\s/g, "_")}.icon]`;
+    if (plugins.length > 0) {
+      icon += ` Used ${plugins.join(", ")}`;
+    }
 
     if (speaker === aiName) {
       const sents = text.split("\n");
