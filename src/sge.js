@@ -12,6 +12,7 @@ const getChatTitle = () => {
   const form = document.querySelector("form");
   const textarea = form.querySelector("textarea");
   const query = (textarea?.value || "No title").substring(0, 50);
+  return query;
 };
 
 const getChatContents = ({ userName, aiName }) => {
@@ -57,8 +58,8 @@ const getChatContents = ({ userName, aiName }) => {
   }
 
   const res = [];
-  res.push(`${userName} ${query}`);
-  res.push(aiName);
+  res.push(`[${userName}.icon] ${query}`);
+  res.push(`[${aiName}.icon]`);
   res.push(...aiTexts.map((x) => `\t${x}`));
 
   return res;
