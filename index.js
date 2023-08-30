@@ -12,6 +12,10 @@ const config = Object.freeze({
     aiName: "bard",
     hashtagLine: "#Bard日記", // *
   },
+  sge: {
+    aiName: "sge",
+    hashtagLine: "#SGE日記", // *
+  },
 });
 
 const createScrapboxLines = (origin) => {
