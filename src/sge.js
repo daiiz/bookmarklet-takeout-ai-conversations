@@ -15,6 +15,8 @@ const getChatTitle = () => {
 };
 
 const getChatContents = ({ userName, aiName }) => {
+  const query = getChatTitle();
+
   let container = null;
   const h1s = document.querySelectorAll("h1");
   for (const h1 of h1s) {
@@ -42,18 +44,24 @@ const getChatContents = ({ userName, aiName }) => {
   targetDiv = targetDiv.querySelector("div[jsname]");
   // console.log(targetDiv);
 
-  const texts = [];
+  const aiTexts = [];
   for (const child of targetDiv.children) {
     const text = child.innerText;
     if (text.includes("\n")) {
       // 箇条書きコンテンツ
       const lines = text.split("\n");
-      texts.push(...lines.map((x) => `\t${x}`));
+      aiTexts.push(...lines.map((x) => `\t${x}`));
     } else {
-      texts.push(text);
+      aiTexts.push(text);
     }
   }
-  return texts;
+
+  const res = [];
+  res.push(`${userName} ${query}`);
+  res.push(aiName);
+  res.push(...aiTexts.map((x) => `\t${x}`));
+
+  return res;
 };
 
 export function extractSGETexts({ userName, sge }) {
