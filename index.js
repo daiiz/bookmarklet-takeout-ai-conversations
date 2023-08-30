@@ -1,5 +1,6 @@
 import { extractChatGPTTexts } from "./src/chatgpt.js";
 import { extractBardTexts } from "./src/bard.js";
+import { extractSGETexts } from "./src/sge.js";
 
 // *: Change this line if needed
 const config = Object.freeze({
@@ -12,15 +13,25 @@ const config = Object.freeze({
     aiName: "bard",
     hashtagLine: "#Bard日記", // *
   },
+  sge: {
+    aiName: "sge",
+    hashtagLine: "#SGE日記", // *
+    titlePrefix: "Google検索: ", // *
+  },
 });
 
-const createScrapboxLines = (origin) => {
+const createScrapboxLines = ({ origin, href }) => {
   const res = [];
   let data;
   if (origin === "https://chat.openai.com") {
     data = extractChatGPTTexts(config);
   } else if (origin === "https://bard.google.com") {
     data = extractBardTexts(config);
+  } else if (
+    href.startsWith("https://www.google.com/search?") ||
+    href.startsWith("https://www.google.co.jp/search?")
+  ) {
+    data = extractSGETexts(config);
   }
   if (!data) {
     return res;
@@ -40,7 +51,8 @@ const copyToClipboard = async (text) => {
 
 const main = () => {
   const origin = window.location.origin;
-  copyToClipboard(createScrapboxLines(origin).join("\n"));
+  const href = window.location.href;
+  copyToClipboard(createScrapboxLines({ origin, href }).join("\n"));
 };
 
 main();

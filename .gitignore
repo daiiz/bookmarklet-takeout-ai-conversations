@@ -1,3 +1,4 @@
 node_modules/*
 
 out/body.js
+**/.DS_Store
