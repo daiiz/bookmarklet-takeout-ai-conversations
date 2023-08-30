@@ -14,7 +14,7 @@ const getChatTitle = () => {
   const query = (textarea?.value || "No title").substring(0, 50);
 };
 
-getChatContents = ({ userName, aiName }) => {
+const getChatContents = ({ userName, aiName }) => {
   let container = null;
   const h1s = document.querySelectorAll("h1");
   for (const h1 of h1s) {
@@ -53,7 +53,7 @@ getChatContents = ({ userName, aiName }) => {
       texts.push(text);
     }
   }
-  console.log(texts);
+  return texts;
 };
 
 export function extractSGETexts({ userName, sge }) {
@@ -63,11 +63,10 @@ export function extractSGETexts({ userName, sge }) {
   };
   const title = getChatTitle();
   const contents = getChatContents(consts);
+  console.log({ title, contents });
   return {
     title,
     contents,
     hashtagLine: sge.hashtagLine,
   };
 }
-
-// AI による概要 h1
