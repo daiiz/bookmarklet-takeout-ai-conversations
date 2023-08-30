@@ -3,8 +3,8 @@
  * https://japan.googleblog.com/2023/08/search-sge.html
  */
 
-const getUserName = () => {
-  return "me"; // WIP
+const getUserName = (userName) => {
+  return userName || "me"; // WIP
 };
 
 const getChatTitle = () => {
@@ -67,14 +67,14 @@ const getChatContents = ({ userName, aiName }) => {
 
 export function extractSGETexts({ userName, sge }) {
   const consts = {
-    userName: getUserName() || userName || "me",
+    userName: getUserName(userName) || userName || "me",
     aiName: sge.aiName || "ai",
   };
   const title = getChatTitle();
   const contents = getChatContents(consts);
   console.log({ title, contents });
   return {
-    title,
+    title: `${sge.titlePrefix}${title}`,
     contents,
     hashtagLine: sge.hashtagLine,
   };

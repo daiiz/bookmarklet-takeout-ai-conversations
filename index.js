@@ -16,6 +16,7 @@ const config = Object.freeze({
   sge: {
     aiName: "sge",
     hashtagLine: "#SGE日記", // *
+    titlePrefix: "Google検索: ", // *
   },
 });
 
